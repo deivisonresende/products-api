@@ -20,8 +20,6 @@ public class ProductController {
 
     @PostMapping()
     public Product create(@RequestBody Product product) {
-        System.out.println("product received " + product.toString());
-
         String id = UUID.randomUUID().toString();
 
         product.setId(id);
