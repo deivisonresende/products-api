@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("products")
 public class ProductController {
@@ -17,7 +19,15 @@ public class ProductController {
     }
 
     @PostMapping()
-    public void create(@RequestBody Product product) {
+    public Product create(@RequestBody Product product) {
         System.out.println("product received " + product.toString());
+
+        String id = UUID.randomUUID().toString();
+
+        product.setId(id);
+
+        productRepository.save(product);
+
+        return product;
     }
 }
