@@ -4,6 +4,7 @@ import com.example.productsApi.model.Product;
 import com.example.productsApi.repository.ProductRepository;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -29,6 +30,11 @@ public class ProductController {
     @GetMapping("{id}")
     public Product retrieveById(@PathVariable("id") String id) {
         return this.productRepository.findById(id).orElse(null);
+    }
+
+    @GetMapping()
+    public List<Product> retrieveByName(@RequestParam("name") String name) {
+        return this.productRepository.findByName(name);
     }
 
     @PutMapping("{id}")
